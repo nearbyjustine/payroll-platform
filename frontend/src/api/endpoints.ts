@@ -11,6 +11,7 @@ export const Api = {
     if (params.department) qs.set('department', String(params.department))
     qs.set('page', String(params.page ?? 0))
     qs.set('size', String(params.size ?? 15))
+    qs.set('sort', 'employeeNo')   // E-0002 before E-0010: number order, not alphabetical names
     return api<Page<Employee>>(`/api/employees?${qs}`)
   },
   employee: (id: number) => api<Employee>(`/api/employees/${id}`),

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { Pencil, Plus, Search } from 'lucide-vue-next'
 import { Api } from '@/api/endpoints'
 import type { Department, Employee, Page } from '@/api/types'
 import { useAuthStore } from '@/stores/auth'
@@ -51,47 +52,87 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="card">
-    <div class="row between">
-      <h1>{{ t('employees.title') }}</h1>
-      <RouterLink v-if="auth.hasRole('HR')" class="button" to="/employees/new">{{ t('employees.new') }}</RouterLink>
+  <header class="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h1 class="text-4xl font-bold tracking-[-0.03em]">{{ t('employees.title') }}</h1>
+      <p class="mt-1.5 text-ink-2">{{ t('employees.lead') }}</p>
     </div>
-    <div class="filters">
-      <input v-model="q" :placeholder="t('employees.searchHint')" :aria-label="t('common.search')" />
-      <select v-model="department" :aria-label="t('employees.department')">
+    <RouterLink v-if="auth.hasRole('HR')" class="key" to="/employees/new"><Plus class="size-4" aria-hidden="true" />{{ t('employees.new') }}</RouterLink>
+  </header>
+
+  <div class="mb-4 flex flex-wrap gap-3">
+    <label class="relative min-w-60 flex-1">
+      <span class="sr-only">{{ t('common.search') }}</span>
+      <Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-2" aria-hidden="true" />
+      <input v-model="q" class="input w-full pl-9" :placeholder="t('employees.searchHint')" />
+    </label>
+    <label>
+      <span class="sr-only">{{ t('employees.department') }}</span>
+      <select v-model="department" class="input">
         <option :value="null">{{ t('common.all') }}</option>
         <option v-for="d in departments" :key="d.id" :value="d.id">{{ d.name }}</option>
       </select>
-    </div>
-    <ErrorBanner :error="error" />
-    <p v-if="loading && !data" class="muted">{{ t('common.loading') }}</p>
-    <div v-if="data" class="table-wrap">
-      <table>
+    </label>
+  </div>
+
+  <ErrorBanner :error="error" />
+
+  <div class="overflow-hidden rounded-md bg-paper shadow-tape">
+    <div class="hidden overflow-x-auto sm:block">
+      <table class="ledger">
         <thead>
           <tr>
             <th>{{ t('employees.no') }}</th>
             <th>{{ t('employees.name') }}</th>
             <th>{{ t('employees.department') }}</th>
             <th>{{ t('employees.type') }}</th>
-            <th class="num">{{ t('employees.salary') }}</th>
-            <th></th>
+            <th class="!text-right">{{ t('employees.salary') }}</th>
+            <th v-if="auth.hasRole('HR')"><span class="sr-only">{{ t('employees.edit') }}</span></th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="e in data.content" :key="e.id" :class="{ inactive: !e.active }">
-            <td>{{ e.employeeNo }}</td>
-            <td>{{ e.fullName }}</td>
+        <tbody v-if="!data">
+          <tr v-for="n in 8" :key="n">
+            <td colspan="6"><div class="skeleton h-4" /></td>
+          </tr>
+        </tbody>
+        <tbody v-else :class="{ 'opacity-60 transition-opacity': loading }">
+          <tr
+            v-for="e in data.content"
+            :key="e.id"
+            :class="{ 'text-ink-2 line-through decoration-ink-2/60': !e.active }"
+          >
+            <td class="font-mono text-[0.75rem]">{{ e.employeeNo }}</td>
+            <td class="font-medium">{{ e.fullName }}</td>
             <td>{{ e.departmentName }}</td>
-            <td>{{ t(`employees.${e.employmentType}`) }}</td>
+            <td class="text-ink-2">{{ t(`employees.${e.employmentType}`) }}</td>
             <td class="num">{{ money(e.baseSalary) }}</td>
-            <td><RouterLink v-if="auth.hasRole('HR')" :to="`/employees/${e.id}`">{{ t('employees.edit') }}</RouterLink></td>
+            <td v-if="auth.hasRole('HR')" class="w-12 text-right">
+              <RouterLink :to="`/employees/${e.id}`" class="inline-flex rounded-md p-1.5 text-ink-2 hover:bg-desk-2 hover:text-ink" :aria-label="`${t('employees.edit')} ${e.fullName}`">
+                <Pencil class="size-4" aria-hidden="true" />
+              </RouterLink>
+            </td>
           </tr>
           <tr v-if="data.content.length === 0">
-            <td colspan="6" class="muted">{{ t('common.none') }}</td>
+            <td colspan="6" class="py-12 text-center text-ink-2">{{ t('employees.empty') }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <!-- Phones: every field stays visible as a two-line ledger entry -->
+    <ul v-if="data" class="divide-y divide-rule sm:hidden">
+      <li v-for="e in data.content" :key="e.id" class="flex items-start justify-between gap-3 px-4 py-3" :class="{ 'text-ink-2 line-through decoration-ink-2/60': !e.active }">
+        <div class="min-w-0">
+          <div class="font-medium">{{ e.fullName }}</div>
+          <div class="mt-0.5 text-xs text-ink-2"><span class="font-mono">{{ e.employeeNo }}</span> · {{ e.departmentName }} · {{ t(`employees.${e.employmentType}`) }}</div>
+        </div>
+        <div class="flex shrink-0 items-center gap-1">
+          <span class="num">{{ money(e.baseSalary) }}</span>
+          <RouterLink v-if="auth.hasRole('HR')" :to="`/employees/${e.id}`" class="inline-flex rounded-md p-1.5 text-ink-2 hover:bg-desk-2" :aria-label="`${t('employees.edit')} ${e.fullName}`"><Pencil class="size-4" aria-hidden="true" /></RouterLink>
+        </div>
+      </li>
+      <li v-if="data.content.length === 0" class="px-4 py-10 text-center text-ink-2">{{ t('employees.empty') }}</li>
+    </ul>
+    <div v-else class="space-y-3 p-4 sm:hidden"><div v-for="n in 6" :key="n" class="skeleton h-9" /></div>
     <Pager v-if="data" :page="data.page.number" :total-pages="data.page.totalPages" @change="(p) => { page = p; load() }" />
-  </section>
+  </div>
 </template>

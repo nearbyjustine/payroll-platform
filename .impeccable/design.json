@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T15:53:26.635201+00:00",
+  "title": "Design System: Payroll",
+  "extensions": {
+    "colorMeta": {
+      "desk": {
+        "role": "neutral",
+        "displayName": "Desk Grey",
+        "tonalRamp": [
+          "oklch(15% 0.006 240)",
+          "oklch(25% 0.006 240)",
+          "oklch(37% 0.006 240)",
+          "oklch(50% 0.006 240)",
+          "oklch(62% 0.006 240)",
+          "oklch(74% 0.006 240)",
+          "oklch(85% 0.006 240)",
+          "oklch(95% 0.006 240)"
+        ]
+      },
+      "desk-recessed": {
+        "role": "neutral",
+        "displayName": "Recessed Desk",
+        "tonalRamp": [
+          "oklch(15% 0.008 240)",
+          "oklch(25% 0.008 240)",
+          "oklch(37% 0.008 240)",
+          "oklch(50% 0.008 240)",
+          "oklch(62% 0.008 240)",
+          "oklch(74% 0.008 240)",
+          "oklch(85% 0.008 240)",
+          "oklch(95% 0.008 240)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Tape Stock",
+        "tonalRamp": [
+          "oklch(15% 0.002 150)",
+          "oklch(25% 0.002 150)",
+          "oklch(37% 0.002 150)",
+          "oklch(50% 0.002 150)",
+          "oklch(62% 0.002 150)",
+          "oklch(74% 0.002 150)",
+          "oklch(85% 0.002 150)",
+          "oklch(95% 0.002 150)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Print Ink",
+        "tonalRamp": [
+          "oklch(15% 0.008 255)",
+          "oklch(25% 0.008 255)",
+          "oklch(37% 0.008 255)",
+          "oklch(50% 0.008 255)",
+          "oklch(62% 0.008 255)",
+          "oklch(74% 0.008 255)",
+          "oklch(85% 0.008 255)",
+          "oklch(95% 0.008 255)"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Faded Print",
+        "tonalRamp": [
+          "oklch(15% 0.015 240)",
+          "oklch(25% 0.015 240)",
+          "oklch(37% 0.015 240)",
+          "oklch(50% 0.015 240)",
+          "oklch(62% 0.015 240)",
+          "oklch(74% 0.015 240)",
+          "oklch(85% 0.015 240)",
+          "oklch(95% 0.015 240)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "tonalRamp": [
+          "oklch(15% 0.01 240)",
+          "oklch(25% 0.01 240)",
+          "oklch(37% 0.01 240)",
+          "oklch(50% 0.01 240)",
+          "oklch(62% 0.01 240)",
+          "oklch(74% 0.01 240)",
+          "oklch(85% 0.01 240)",
+          "oklch(95% 0.01 240)"
+        ]
+      },
+      "ribbon": {
+        "role": "secondary",
+        "displayName": "Ribbon Red",
+        "tonalRamp": [
+          "oklch(15% 0.17 28)",
+          "oklch(25% 0.17 28)",
+          "oklch(37% 0.17 28)",
+          "oklch(50% 0.17 28)",
+          "oklch(62% 0.17 28)",
+          "oklch(74% 0.17 28)",
+          "oklch(85% 0.17 28)",
+          "oklch(95% 0.17 28)"
+        ]
+      },
+      "ribbon-wash": {
+        "role": "secondary",
+        "displayName": "Ribbon Wash",
+        "tonalRamp": [
+          "oklch(15% 0.03 28)",
+          "oklch(25% 0.03 28)",
+          "oklch(37% 0.03 28)",
+          "oklch(50% 0.03 28)",
+          "oklch(62% 0.03 28)",
+          "oklch(74% 0.03 28)",
+          "oklch(85% 0.03 28)",
+          "oklch(95% 0.03 28)"
+        ]
+      },
+      "key": {
+        "role": "primary",
+        "displayName": "Key Cap",
+        "tonalRamp": [
+          "oklch(15% 0.008 255)",
+          "oklch(25% 0.008 255)",
+          "oklch(37% 0.008 255)",
+          "oklch(50% 0.008 255)",
+          "oklch(62% 0.008 255)",
+          "oklch(74% 0.008 255)",
+          "oklch(85% 0.008 255)",
+          "oklch(95% 0.008 255)"
+        ]
+      },
+      "key-ink": {
+        "role": "neutral",
+        "displayName": "Key Legend",
+        "tonalRamp": [
+          "oklch(15% 0.002 150)",
+          "oklch(25% 0.002 150)",
+          "oklch(37% 0.002 150)",
+          "oklch(50% 0.002 150)",
+          "oklch(62% 0.002 150)",
+          "oklch(74% 0.002 150)",
+          "oklch(85% 0.002 150)",
+          "oklch(95% 0.002 150)"
+        ]
+      },
+      "posted": {
+        "role": "tertiary",
+        "displayName": "Posted Green",
+        "tonalRamp": [
+          "oklch(15% 0.08 155)",
+          "oklch(25% 0.08 155)",
+          "oklch(37% 0.08 155)",
+          "oklch(50% 0.08 155)",
+          "oklch(62% 0.08 155)",
+          "oklch(74% 0.08 155)",
+          "oklch(85% 0.08 155)",
+          "oklch(95% 0.08 155)"
+        ]
+      },
+      "tape-lamplit": {
+        "role": "neutral",
+        "displayName": "Lamp-lit Tape Stock",
+        "tonalRamp": [
+          "oklch(15% 0.004 120)",
+          "oklch(25% 0.004 120)",
+          "oklch(37% 0.004 120)",
+          "oklch(50% 0.004 120)",
+          "oklch(62% 0.004 120)",
+          "oklch(74% 0.004 120)",
+          "oklch(85% 0.004 120)",
+          "oklch(95% 0.004 120)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Signed-out home headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Leads in faded print, max 62ch."
+      },
+      "body-ledger": {
+        "displayName": "Ledger Body",
+        "purpose": "Ledger cells, nav, form text, key labels."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section headings and ledger column heads, uppercase sans."
+      },
+      "label-stamp": {
+        "displayName": "Stamp",
+        "purpose": "Run status stamp, uppercase sans."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Every amount, count, employee number; mono, tabular."
+      },
+      "figure-total": {
+        "displayName": "Starred Total",
+        "purpose": "The bold * total line on tape."
+      },
+      "tape-meta": {
+        "displayName": "Tape Meta",
+        "purpose": "Printed tape head lines, mono uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-on-desk",
+        "value": "0 1px 1px rgb(21 23 26 / 0.06), 0 8px 20px -8px rgb(21 23 26 / 0.22)",
+        "purpose": "Every paper surface (tape, ledger, form card). Dark: 0 1px 1px rgb(0 0 0 / 0.45), 0 12px 26px -10px rgb(0 0 0 / 0.7)."
+      },
+      {
+        "name": "key-edge",
+        "value": "0 2px 0 rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.12)",
+        "purpose": "Calculator key cap edge; 3px on hover, 0 on press."
+      },
+      {
+        "name": "key-quiet-edge",
+        "value": "0 2px 0 var(--rule), inset 0 0 0 1px var(--rule)",
+        "purpose": "Quiet key edge and rim."
+      },
+      {
+        "name": "focus-halo",
+        "value": "0 0 0 3px color-mix(in oklab, var(--ink) 12%, transparent)",
+        "purpose": "Input focus halo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing in the system."
+      },
+      {
+        "name": "tape-unroll",
+        "value": "clip-path inset(0 0 100% 0) -> inset(0) 450ms",
+        "purpose": "Active run tape appears on selection."
+      },
+      {
+        "name": "line-print",
+        "value": "clip-path per line 220ms, 60ms stagger",
+        "purpose": "Tape line print reveal (live run only)."
+      },
+      {
+        "name": "figure-roll",
+        "value": "600ms ease-out-expo",
+        "purpose": "Live run figures roll to new values; instant under reduced motion."
+      },
+      {
+        "name": "total-print",
+        "value": "300ms clip-path",
+        "purpose": "Starred net prints when a run posts."
+      },
+      {
+        "name": "key-press",
+        "value": "120ms transform + box-shadow",
+        "purpose": "Key rise/sink."
+      },
+      {
+        "name": "route-fade",
+        "value": "180ms opacity + 6px rise",
+        "purpose": "Route change."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "note": "ledgers switch from two-line entries to tables"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "payroll 340px + fluid two-column layout"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Calculator Key",
+      "kind": "button",
+      "refersTo": "button-key",
+      "description": "Primary action; the only button shape.",
+      "html": "<button class=\"ds-key\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polygon points=\"6 3 20 12 6 21 6 3\"/></svg>Run payroll</button>",
+      "css": ".ds-key{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:0;border-radius:6px;background:var(--key,#15171a);color:var(--key-ink,#f9faf9);font:600 .875rem 'Schibsted Grotesk Variable',ui-sans-serif,sans-serif;box-shadow:0 2px 0 rgb(0 0 0/.35),inset 0 1px 0 rgb(255 255 255/.12);transition:transform 120ms cubic-bezier(.16,1,.3,1),box-shadow 120ms cubic-bezier(.16,1,.3,1);cursor:pointer}.ds-key:hover{transform:translateY(-1px);box-shadow:0 3px 0 rgb(0 0 0/.35),inset 0 1px 0 rgb(255 255 255/.12)}.ds-key:active{transform:translateY(2px);box-shadow:none}.ds-key:focus-visible{outline:2px solid var(--ink,#15171a);outline-offset:2px}"
+    },
+    {
+      "name": "Quiet Key",
+      "kind": "button",
+      "refersTo": "button-key-quiet",
+      "description": "Secondary action: Download PDF, Cancel, pager.",
+      "html": "<button class=\"ds-key-quiet\">Download PDF</button>",
+      "css": ".ds-key-quiet{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:0;border-radius:6px;background:var(--paper,#f9faf9);color:var(--ink,#15171a);font:600 .875rem 'Schibsted Grotesk Variable',ui-sans-serif,sans-serif;box-shadow:0 2px 0 var(--rule,#c7ccd1),inset 0 0 0 1px var(--rule,#c7ccd1);transition:transform 120ms cubic-bezier(.16,1,.3,1),box-shadow 120ms;cursor:pointer}.ds-key-quiet:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--rule,#c7ccd1),inset 0 0 0 1px var(--rule,#c7ccd1)}.ds-key-quiet:active{transform:translateY(2px);box-shadow:inset 0 0 0 1px var(--rule,#c7ccd1)}.ds-key-quiet:focus-visible{outline:2px solid var(--ink,#15171a);outline-offset:2px}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Label above a 2.5rem control; select gets the palette chevron.",
+      "html": "<label class=\"ds-field\">Department<select class=\"ds-input ds-select\"><option>Engineering</option></select></label>",
+      "css": ".ds-field{display:grid;gap:.35rem;font:400 .8rem 'Schibsted Grotesk Variable',sans-serif;color:var(--ink-2,#4a535b)}.ds-input{height:2.5rem;background-color:var(--paper,#f9faf9);border:1px solid var(--rule,#c7ccd1);border-radius:6px;padding:0 .7rem;color:var(--ink,#15171a);font:inherit;font-size:.9rem;caret-color:var(--ribbon,#b3221a);transition:border-color 150ms,box-shadow 150ms}.ds-select{appearance:none;padding-right:2rem;background-repeat:no-repeat;background-position:right .65rem center;background-size:.75rem;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%237b848c' stroke-width='1.8'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E\")}.ds-input:focus{outline:none;border-color:var(--ink,#15171a);box-shadow:0 0 0 3px color-mix(in oklab,var(--ink,#15171a) 12%,transparent)}"
+    },
+    {
+      "name": "Tape Strip",
+      "kind": "custom",
+      "refersTo": "tape-strip",
+      "description": "Printed calculator tape: torn edges, label/figure/operator lines, red negatives, starred total.",
+      "html": "<div class=\"ds-tape\"><div class=\"ds-tape-meta\">NOVEMBER 2026<br>E-0001 · ANA SANTOS</div><div class=\"ds-line\"><span>Gross pay</span><span>30,000.00</span><span class=\"ds-op\">+</span></div><div class=\"ds-line ds-neg\"><span>SSS contribution</span><span>1,350.00</span><span class=\"ds-op\">−</span></div><div class=\"ds-line ds-neg\"><span>Withholding tax</span><span>1,030.05</span><span class=\"ds-op\">−</span></div><div class=\"ds-line ds-total\"><span>Net pay</span><span>27,619.95</span><span class=\"ds-op\">*</span></div></div>",
+      "css": ".ds-tape{position:relative;max-width:22rem;background:#f9faf9;color:#15171a;padding:1.35rem 1.2rem;margin:8px 0;box-shadow:0 1px 1px rgb(21 23 26/.06),0 8px 20px -8px rgb(21 23 26/.22)}.ds-tape::before,.ds-tape::after{content:'';position:absolute;left:0;right:0;height:6px;background:#f9faf9;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E\") 0 0/10px 6px repeat-x;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E\") 0 0/10px 6px repeat-x}.ds-tape::before{top:-6px;transform:scaleY(-1)}.ds-tape::after{bottom:-6px}.ds-tape-meta{font:400 .66rem 'Martian Mono Variable',ui-monospace,monospace;letter-spacing:.08em;color:#4a535b;border-bottom:1px dashed #c7ccd1;padding-bottom:.6rem;margin-bottom:.6rem}.ds-line{display:grid;grid-template-columns:1fr auto 1.2ch;gap:.75rem;align-items:baseline;font:400 .78rem/2 'Martian Mono Variable',ui-monospace,monospace;font-variant-numeric:tabular-nums}.ds-op{text-align:center;color:#4a535b}.ds-neg,.ds-neg .ds-op{color:#b3221a}.ds-total{font-weight:700;font-size:.92rem;border-top:1px dashed #c7ccd1;margin-top:.4rem;padding-top:.4rem}.ds-total .ds-op{color:#15171a}"
+    },
+    {
+      "name": "Ledger",
+      "kind": "card",
+      "refersTo": "ledger-surface",
+      "description": "Hairline table on paper: heavy head rule, mono right-aligned figures, red trailing − on deductions.",
+      "html": "<div class=\"ds-ledger-wrap\"><table class=\"ds-ledger\"><thead><tr><th>No.</th><th>Employee</th><th class=\"r\">Gross</th><th class=\"r\">Deductions</th><th class=\"r\">Net</th></tr></thead><tbody><tr><td class=\"m\">E-0001</td><td>Ana Santos</td><td class=\"n\">30,000.00</td><td class=\"n neg\">3,330.05 −</td><td class=\"n b\">26,669.95</td></tr><tr><td class=\"m\">E-0002</td><td>Hana Reyes</td><td class=\"n\">42,000.00</td><td class=\"n neg\">5,688.40 −</td><td class=\"n b\">36,311.60</td></tr></tbody></table></div>",
+      "css": ".ds-ledger-wrap{background:var(--paper,#f9faf9);border-radius:6px;overflow:hidden;box-shadow:0 1px 1px rgb(21 23 26/.06),0 8px 20px -8px rgb(21 23 26/.22)}.ds-ledger{width:100%;border-collapse:collapse;font:400 .875rem 'Schibsted Grotesk Variable',sans-serif;color:var(--ink,#15171a)}.ds-ledger th{text-align:left;font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2,#4a535b);padding:.65rem .8rem;border-bottom:1.5px solid var(--ink,#15171a)}.ds-ledger th.r{text-align:right}.ds-ledger td{padding:.62rem .8rem;border-bottom:1px solid var(--rule,#c7ccd1);white-space:nowrap}.ds-ledger tbody tr{transition:background-color 120ms}.ds-ledger tbody tr:hover{background:color-mix(in oklab,var(--ink,#15171a) 4%,transparent)}.ds-ledger .n{text-align:right;font:400 .78rem 'Martian Mono Variable',ui-monospace,monospace;font-variant-numeric:tabular-nums}.ds-ledger .m{font:400 .75rem 'Martian Mono Variable',ui-monospace,monospace}.ds-ledger .b{font-weight:600}.ds-ledger .neg{color:var(--ribbon,#b3221a)}"
+    },
+    {
+      "name": "Status Stamp",
+      "kind": "chip",
+      "refersTo": "stamp-posted",
+      "description": "Rubber-stamp run status: posted green, failed red, pending faded.",
+      "html": "<span class=\"ds-stamp ds-posted\">Posted</span> <span class=\"ds-stamp ds-failed\">Failed</span> <span class=\"ds-stamp ds-pending\">Pending</span>",
+      "css": ".ds-stamp{display:inline-flex;align-items:center;gap:.35rem;font:700 .68rem 'Schibsted Grotesk Variable',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border:1px solid currentColor;border-radius:3px}.ds-posted{color:var(--posted,#23663f)}.ds-failed{color:var(--ribbon,#b3221a)}.ds-pending{color:var(--ink-2,#4a535b)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sans links; active is an ink pill.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Employees</a><a href=\"#\" class=\"on\">Payroll runs</a><a href=\"#\">My payslips</a></nav>",
+      "css": ".ds-nav{display:flex;gap:.25rem}.ds-nav a{padding:.375rem .75rem;border-radius:6px;font:500 .875rem 'Schibsted Grotesk Variable',sans-serif;color:var(--ink-2,#4a535b);text-decoration:none;transition:background-color 150ms,color 150ms}.ds-nav a:hover{background:var(--desk-2,#d4d8dc);color:var(--ink,#15171a)}.ds-nav a.on{background:var(--ink,#15171a);color:var(--paper,#f9faf9)}.ds-nav a:focus-visible{outline:2px solid var(--ink,#15171a);outline-offset:2px}"
+    },
+    {
+      "name": "Error Banner",
+      "kind": "custom",
+      "refersTo": "error-banner",
+      "description": "Ribbon-wash alert with a mono correlation reference.",
+      "html": "<div class=\"ds-err\" role=\"alert\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4M12 16h.01\"/></svg><div>A payroll run for this period already exists.<span class=\"ref\">Ref 3f9a-11c2</span></div></div>",
+      "css": ".ds-err{display:flex;gap:.625rem;align-items:flex-start;padding:.625rem .875rem;border-radius:6px;background:var(--ribbon-wash,#f7dfdc);color:var(--ribbon,#b3221a);font:400 .875rem 'Schibsted Grotesk Variable',sans-serif}.ds-err svg{flex-shrink:0;margin-top:.125rem}.ds-err .ref{display:block;margin-top:.125rem;font:400 .68rem 'Martian Mono Variable',ui-monospace,monospace;opacity:.8}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Adding-Machine Tape",
+    "overview": "**Creative North Star: \"The Adding-Machine Tape\"**\n\nPayroll is a cool grey desk with calculator tape lying on it. A payroll run and a payslip are printed strips of paper stock with torn zig-zag edges. Each line is a label, a figure and an operator column. Deductions print in red-ribbon ink, and the net pay is the total, marked with the calculator's `*`. Records that HR works on every day (employees, the run register, a run's payslips) stay as dense hairline ledgers on plain paper surfaces. The tape is kept for figures that are being added up.\n\nThe density is office-desktop working density: 14px ledger text, tabular figures and a 1180px column. The type does all the hierarchy work. Schibsted Grotesk sets the interface: headings, nav, labels and form text. Martian Mono appears only where something is a figure or is printed on the tape. Colour is close to monochrome, with ink on paper on desk. The only chromatic signals are ribbon red (negatives, failures, errors) and posted green (a completed run). This system replaces the KPI-card admin dashboard: there are no stat tiles and no chart panels, and totals sit on the tape where they are calculated.\n\nDark mode puts the same desk under a desk lamp at night. The desk and ledgers go dark, but the tape stays lit paper with dark print, because tape is a physical object and does not invert.",
+    "keyCharacteristics": [
+      "Cool grey desk (never cream) with paper surfaces lying on it under one soft shadow.",
+      "Printed tape: torn zig-zag edges, a three-column grid of label, figure and operator, red `−` negatives and a starred bold total.",
+      "Calculator key-cap buttons with a 2px bottom edge that sinks when pressed.",
+      "Hairline ledgers: a 1.5px ink rule under the header, 1px rules between rows, no zebra striping.",
+      "Mono for figures only, sans for everything a person reads as interface.",
+      "Motion only on the live payroll run: the tape prints and its figures roll. Everything else renders at rest."
+    ],
+    "rules": [
+      {
+        "name": "The Ribbon Rule",
+        "body": "Red ink means subtraction or failure and nothing else. Every deduction prints in ribbon red with a trailing `−` operator, on the tape and in ledgers (`3,330.05 −`), on desktop and on phones. A deduction never appears without its operator, and red never appears without a deduction or an error behind it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lit Tape Rule",
+        "body": "Tape is paper and never inverts. In dark mode the desk goes dark, but the tape remains light stock with dark print, using its own re-scoped ink tokens. Anything placed on a tape inherits the tape's tokens and does not use the page's tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cool Desk Rule",
+        "body": "The desk is cool grey. Warm cream or beige backgrounds belong to a different world.",
+        "section": "colors"
+      },
+      {
+        "name": "The Print-Head Rule",
+        "body": "Mono is used only for figures and for text printed on tape. UI labels, nav, column headers, section headings, buttons and stamps are set in Schibsted Grotesk. To check a use of mono, ask whether a calculator would have printed it. If it would not, set it in sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every figure is set in tabular numerals and right-aligned in its column, so the decimal points line up.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two-Line Entry Rule",
+        "body": "Below 640px, every ledger becomes a list of two-line entries and keeps every field. Line one holds the name or period on the left and the bold figure on the right. Line two holds the secondary fields in faded print: mono number, department and type, or status stamp and count, or gross `+` and red deductions `−`. Columns are never dropped on phones.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Sheet Rule",
+        "body": "A surface is either on the desk (it gets the paper shadow) or part of the desk. Paper is never stacked on paper.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Live Tape Rule",
+        "body": "Only the active payroll run's tape animates. On selection it unrolls downward (clip-path, 0.45s). While a run processes its figures roll to new values (0.6s), and the starred total prints in once it posts (0.3s). All motion uses the out-expo curve `cubic-bezier(0.16, 1, 0.3, 1)`. Payslip tapes, the home tape, ledger rows and everything else render at rest. Route changes use only a 0.18s fade with a 6px rise. Reduced motion is respected everywhere: numbers jump to their final value and the pulse and spin stop.",
+        "section": "motion"
+      }
+    ],
+    "dos": [
+      "**Do** print every deduction in ribbon red with a trailing `−` operator, on tape, in ledgers and in phone entries.",
+      "**Do** end every itemised calculation with a bold, starred `*` total.",
+      "**Do** set figures in Martian Mono with tabular numerals, right-aligned. Set every other piece of interface text in Schibsted Grotesk.",
+      "**Do** keep the tape as lit paper stock with dark print in dark mode, using the tape's re-scoped tokens for anything printed on it.",
+      "**Do** turn ledgers into two-line entries below 640px that keep every field.",
+      "**Do** keep every form control at the shared 2.5rem height, with the palette chevron on selects.",
+      "**Do** use calculator keys (ink or quiet) for every button-shaped action."
+    ],
+    "donts": [
+      "**Don't** build KPI-card dashboards, stat tiles or chart panels. Totals belong on the tape.",
+      "**Don't** set UI labels, nav, column headers or buttons in mono.",
+      "**Don't** animate payslip tapes, ledger rows or page furniture. Motion belongs to the live run.",
+      "**Don't** drop columns on phones or hide figures behind a click.",
+      "**Don't** use red for anything except subtraction and failure, or green for anything except a posted run.",
+      "**Don't** use zebra striping in ledgers, or stack paper on paper.",
+      "**Don't** use warm cream desks, and don't invert the tape to dark stock."
+    ]
+  }
+}
