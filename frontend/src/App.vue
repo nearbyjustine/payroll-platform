@@ -35,14 +35,14 @@ function setLocale(value: string) {
       <div class="mx-auto flex max-w-[1180px] flex-wrap items-center gap-x-8 gap-y-2 px-4 py-3.5 sm:px-6">
         <RouterLink to="/" class="flex items-center gap-2">
           <ReceiptText class="size-5" aria-hidden="true" />
-          <span class="font-mono text-[0.95rem] font-bold uppercase tracking-[0.06em]">{{ t('app.title') }}</span>
+          <span class="text-[1.05rem] font-bold tracking-[-0.01em]">{{ t('app.title') }}</span>
         </RouterLink>
         <nav class="order-last flex w-full gap-1 overflow-x-auto sm:order-none sm:w-auto" :aria-label="t('app.title')">
           <RouterLink
             v-for="l in links"
             :key="l.to"
             :to="l.to"
-            class="whitespace-nowrap rounded-md px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.06em] text-ink-2 transition-colors hover:bg-desk-2 hover:text-ink"
+            class="whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium text-ink-2 transition-colors hover:bg-desk-2 hover:text-ink"
             active-class="!bg-ink !text-paper"
           >
             {{ l.label }}
@@ -52,7 +52,7 @@ function setLocale(value: string) {
           <label class="sr-only" for="lang">{{ t('app.language') }}</label>
           <select
             id="lang"
-            class="cursor-pointer rounded-md bg-transparent px-1.5 py-1 font-mono text-[0.72rem] uppercase hover:bg-desk-2"
+            class="cursor-pointer rounded-md bg-transparent px-1.5 py-1 text-xs font-semibold uppercase hover:bg-desk-2"
             :value="locale"
             @change="setLocale(($event.target as HTMLSelectElement).value)"
           >

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { motion } from 'motion-v'
 import { Pencil, Plus, Search } from 'lucide-vue-next'
 import { Api } from '@/api/endpoints'
 import type { Department, Employee, Page } from '@/api/types'
@@ -79,14 +78,14 @@ onMounted(async () => {
   <ErrorBanner :error="error" />
 
   <div class="overflow-hidden rounded-md bg-paper shadow-tape">
-    <div class="overflow-x-auto">
+    <div class="hidden overflow-x-auto sm:block">
       <table class="ledger">
         <thead>
           <tr>
             <th>{{ t('employees.no') }}</th>
             <th>{{ t('employees.name') }}</th>
-            <th class="hidden md:table-cell">{{ t('employees.department') }}</th>
-            <th class="hidden sm:table-cell">{{ t('employees.type') }}</th>
+            <th>{{ t('employees.department') }}</th>
+            <th>{{ t('employees.type') }}</th>
             <th class="!text-right">{{ t('employees.salary') }}</th>
             <th v-if="auth.hasRole('HR')"><span class="sr-only">{{ t('employees.edit') }}</span></th>
           </tr>
@@ -97,31 +96,43 @@ onMounted(async () => {
           </tr>
         </tbody>
         <tbody v-else :class="{ 'opacity-60 transition-opacity': loading }">
-          <motion.tr
-            v-for="(e, i) in data.content"
+          <tr
+            v-for="e in data.content"
             :key="e.id"
-            :initial="{ opacity: 0 }"
-            :animate="{ opacity: 1 }"
-            :transition="{ delay: Math.min(i, 12) * 0.015, duration: 0.18 }"
             :class="{ 'text-ink-2 line-through decoration-ink-2/60': !e.active }"
           >
             <td class="font-mono text-[0.75rem]">{{ e.employeeNo }}</td>
             <td class="font-medium">{{ e.fullName }}</td>
-            <td class="hidden md:table-cell">{{ e.departmentName }}</td>
-            <td class="hidden text-ink-2 sm:table-cell">{{ t(`employees.${e.employmentType}`) }}</td>
+            <td>{{ e.departmentName }}</td>
+            <td class="text-ink-2">{{ t(`employees.${e.employmentType}`) }}</td>
             <td class="num">{{ money(e.baseSalary) }}</td>
             <td v-if="auth.hasRole('HR')" class="w-12 text-right">
               <RouterLink :to="`/employees/${e.id}`" class="inline-flex rounded-md p-1.5 text-ink-2 hover:bg-desk-2 hover:text-ink" :aria-label="`${t('employees.edit')} ${e.fullName}`">
                 <Pencil class="size-4" aria-hidden="true" />
               </RouterLink>
             </td>
-          </motion.tr>
+          </tr>
           <tr v-if="data.content.length === 0">
             <td colspan="6" class="py-12 text-center text-ink-2">{{ t('employees.empty') }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+    <!-- Phones: every field stays visible as a two-line ledger entry -->
+    <ul v-if="data" class="divide-y divide-rule sm:hidden">
+      <li v-for="e in data.content" :key="e.id" class="flex items-start justify-between gap-3 px-4 py-3" :class="{ 'text-ink-2 line-through decoration-ink-2/60': !e.active }">
+        <div class="min-w-0">
+          <div class="font-medium">{{ e.fullName }}</div>
+          <div class="mt-0.5 text-xs text-ink-2"><span class="font-mono">{{ e.employeeNo }}</span> · {{ e.departmentName }} · {{ t(`employees.${e.employmentType}`) }}</div>
+        </div>
+        <div class="flex shrink-0 items-center gap-1">
+          <span class="num">{{ money(e.baseSalary) }}</span>
+          <RouterLink v-if="auth.hasRole('HR')" :to="`/employees/${e.id}`" class="inline-flex rounded-md p-1.5 text-ink-2 hover:bg-desk-2" :aria-label="`${t('employees.edit')} ${e.fullName}`"><Pencil class="size-4" aria-hidden="true" /></RouterLink>
+        </div>
+      </li>
+      <li v-if="data.content.length === 0" class="px-4 py-10 text-center text-ink-2">{{ t('employees.empty') }}</li>
+    </ul>
+    <div v-else class="space-y-3 p-4 sm:hidden"><div v-for="n in 6" :key="n" class="skeleton h-9" /></div>
     <Pager v-if="data" :page="data.page.number" :total-pages="data.page.totalPages" @change="(p) => { page = p; load() }" />
   </div>
 </template>

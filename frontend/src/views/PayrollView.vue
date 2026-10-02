@@ -89,7 +89,7 @@ onUnmounted(() => poller && clearInterval(poller))
         <button class="key" type="submit"><Play class="size-4" aria-hidden="true" />{{ t('payroll.start') }}</button>
       </form>
       <ErrorBanner :error="error" />
-      <p v-if="notice && printing" class="mt-3 font-mono text-[0.72rem] text-ink-2" role="status">{{ notice }}</p>
+      <p v-if="notice && printing" class="mt-3 text-sm text-ink-2" role="status">{{ notice }}</p>
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -157,16 +157,28 @@ onUnmounted(() => poller && clearInterval(poller))
     <!-- Right: the run register and the selected run's payslips. -->
     <div class="min-w-0 space-y-8">
       <section>
-        <h2 class="mb-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-ink-2">{{ t('payroll.register') }}</h2>
+        <h2 class="section-label mb-3">{{ t('payroll.register') }}</h2>
         <div v-if="!runs" class="skeleton h-40" />
         <p v-else-if="runs.length === 0" class="rounded-md bg-paper px-5 py-8 text-ink-2 shadow-tape">{{ t('payroll.noRuns') }}</p>
-        <div v-else class="overflow-x-auto rounded-md bg-paper shadow-tape">
+        <div v-else class="overflow-hidden rounded-md bg-paper shadow-tape">
+          <ul class="divide-y divide-rule sm:hidden">
+            <li v-for="r in runs" :key="r.id">
+              <button class="flex w-full items-center justify-between gap-3 px-4 py-3 text-left" :class="{ 'bg-desk-2': r.id === selectedId }" :aria-pressed="r.id === selectedId" @click="select(r)">
+                <span class="min-w-0">
+                  <span class="block font-medium">{{ periodLabel(r.period, locale) }}</span>
+                  <span class="mt-1 flex items-center gap-2 text-xs text-ink-2"><StatusBadge :status="r.status" /><span class="font-mono">{{ r.processedCount }}/{{ r.employeeCount }}</span></span>
+                </span>
+                <span class="num font-semibold">{{ money(r.totalNet) }}</span>
+              </button>
+            </li>
+          </ul>
+          <div class="hidden overflow-x-auto sm:block">
           <table class="ledger">
             <thead>
               <tr>
                 <th>{{ t('payroll.period') }}</th>
                 <th>{{ t('payroll.status') }}</th>
-                <th class="hidden !text-right sm:table-cell">{{ t('payroll.employees') }}</th>
+                <th class="!text-right">{{ t('payroll.employees') }}</th>
                 <th class="!text-right">{{ t('payroll.net') }}</th>
               </tr>
             </thead>
@@ -183,25 +195,41 @@ onUnmounted(() => poller && clearInterval(poller))
               >
                 <td class="font-medium">{{ periodLabel(r.period, locale) }}</td>
                 <td><StatusBadge :status="r.status" /></td>
-                <td class="num hidden sm:table-cell">{{ r.processedCount }}/{{ r.employeeCount }}</td>
+                <td class="num">{{ r.processedCount }}/{{ r.employeeCount }}</td>
                 <td class="num font-semibold">{{ money(r.totalNet) }}</td>
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
       </section>
 
       <section v-if="selected && payslips">
-        <h2 class="mb-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-ink-2">{{ t('payroll.payslips', { period: periodLabel(selected.period, locale) }) }}</h2>
+        <h2 class="section-label mb-3">{{ t('payroll.payslips', { period: periodLabel(selected.period, locale) }) }}</h2>
         <div class="overflow-hidden rounded-md bg-paper shadow-tape">
-          <div class="overflow-x-auto">
+          <ul class="divide-y divide-rule sm:hidden">
+            <li v-for="p in payslips.content" :key="p.id" class="flex items-start justify-between gap-3 px-4 py-3">
+              <div class="min-w-0">
+                <div class="font-medium">{{ p.employeeName }}</div>
+                <div class="mt-0.5 font-mono text-[0.7rem] text-ink-2">{{ p.employeeNo }}</div>
+                <div class="mt-0.5 flex flex-wrap gap-x-3 font-mono text-[0.7rem] text-ink-2">
+                  <span class="whitespace-nowrap">{{ money(p.gross) }} +</span><span class="whitespace-nowrap text-ribbon">{{ money(p.totalDeductions) }} −</span>
+                </div>
+              </div>
+              <div class="flex shrink-0 items-center gap-1">
+                <span class="num font-semibold">{{ money(p.net) }}</span>
+                <button class="rounded-md p-1.5 text-ink-2 hover:bg-desk-2 disabled:opacity-40" :disabled="!p.pdfAvailable" :aria-label="`PDF ${p.employeeName}`" @click="download(p)"><Download class="size-4" aria-hidden="true" /></button>
+              </div>
+            </li>
+          </ul>
+          <div class="hidden overflow-x-auto sm:block">
             <table class="ledger">
               <thead>
                 <tr>
                   <th>No.</th>
                   <th>{{ t('payroll.employee') }}</th>
-                  <th class="hidden !text-right sm:table-cell">{{ t('payroll.gross') }}</th>
-                  <th class="hidden !text-right md:table-cell">{{ t('payroll.deductions') }}</th>
+                  <th class="!text-right">{{ t('payroll.gross') }}</th>
+                  <th class="!text-right">{{ t('payroll.deductions') }}</th>
                   <th class="!text-right">{{ t('payroll.net') }}</th>
                   <th><span class="sr-only">PDF</span></th>
                 </tr>
@@ -210,8 +238,8 @@ onUnmounted(() => poller && clearInterval(poller))
                 <tr v-for="p in payslips.content" :key="p.id">
                   <td class="font-mono text-[0.75rem]">{{ p.employeeNo }}</td>
                   <td>{{ p.employeeName }}</td>
-                  <td class="num hidden sm:table-cell">{{ money(p.gross) }}</td>
-                  <td class="num hidden text-ribbon md:table-cell">−{{ money(p.totalDeductions) }}</td>
+                  <td class="num">{{ money(p.gross) }}</td>
+                  <td class="num text-ribbon">{{ money(p.totalDeductions) }} −</td>
                   <td class="num font-semibold">{{ money(p.net) }}</td>
                   <td class="w-12 text-right">
                     <button class="rounded-md p-1.5 text-ink-2 hover:bg-desk-2 hover:text-ink disabled:opacity-40" :disabled="!p.pdfAvailable" :aria-label="`PDF ${p.employeeName}`" @click="download(p)">

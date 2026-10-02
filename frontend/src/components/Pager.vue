@@ -12,7 +12,7 @@ const { t } = useI18n()
     <button class="key key-quiet px-2.5 py-1.5" :disabled="props.page === 0" :aria-label="t('common.prev')" @click="emit('change', props.page - 1)">
       <ChevronLeft class="size-4" aria-hidden="true" />
     </button>
-    <span class="font-mono text-[0.7rem] text-ink-2">{{ t('common.page', { n: props.page + 1, total: props.totalPages }) }}</span>
+    <span class="text-xs text-ink-2">{{ t('common.page', { n: props.page + 1, total: props.totalPages }) }}</span>
     <button class="key key-quiet px-2.5 py-1.5" :disabled="props.page + 1 >= props.totalPages" :aria-label="t('common.next')" @click="emit('change', props.page + 1)">
       <ChevronRight class="size-4" aria-hidden="true" />
     </button>

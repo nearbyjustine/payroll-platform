@@ -20,5 +20,5 @@ onMounted(async () => {
 
 <template>
   <p v-if="error" role="alert" class="rounded-md bg-ribbon-wash px-4 py-3 text-ribbon">{{ error }}</p>
-  <p v-else class="flex items-center gap-2 py-16 font-mono text-sm text-ink-2" role="status"><LoaderCircle class="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />Signing you in…</p>
+  <p v-else class="flex items-center gap-2 py-16 text-sm text-ink-2" role="status"><LoaderCircle class="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" />Signing you in…</p>
 </template>

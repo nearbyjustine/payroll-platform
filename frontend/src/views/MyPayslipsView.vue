@@ -68,5 +68,5 @@ async function download(p: Payslip) {
       </button>
     </article>
   </div>
-  <p v-if="payslips?.length" class="mt-10 font-mono text-[0.66rem] uppercase tracking-[0.08em] text-ink-2">{{ t('payslips.disclaimer') }}</p>
+  <p v-if="payslips?.length" class="mt-10 text-xs text-ink-2">{{ t('payslips.disclaimer') }}</p>
 </template>

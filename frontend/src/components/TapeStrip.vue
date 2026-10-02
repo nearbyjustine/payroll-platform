@@ -13,7 +13,7 @@ export interface PrintedLine {
  * A strip of printed calculator tape. Lines "print": each unrolls downward from the print head
  * (clip-path), one after another, the way paper feeds out of a printing calculator.
  */
-withDefaults(defineProps<{ lines: PrintedLine[]; meta?: string[]; delay?: number }>(), { delay: 0 })
+withDefaults(defineProps<{ lines: PrintedLine[]; meta?: string[]; delay?: number; print?: boolean }>(), { delay: 0, print: false })
 </script>
 
 <template>
@@ -26,7 +26,7 @@ withDefaults(defineProps<{ lines: PrintedLine[]; meta?: string[]; delay?: number
       :key="line.key"
       class="tape-line"
       :class="line.tone"
-      :initial="{ clipPath: 'inset(0 0 100% 0)' }"
+      :initial="print ? { clipPath: 'inset(0 0 100% 0)' } : false"
       :animate="{ clipPath: 'inset(0 0 0% 0)' }"
       :transition="{ duration: 0.22, ease: [0.16, 1, 0.3, 1], delay: delay + Math.min(i, 10) * 0.06 }"
     >

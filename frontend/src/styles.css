@@ -24,6 +24,13 @@
   --posted: #23663f;      /* a run posted / completed */
   --posted-wash: #dcebe2;
   --shadow: 0 1px 1px rgb(21 23 26 / 0.06), 0 8px 20px -8px rgb(21 23 26 / 0.22);
+  /* Tape stock is physical paper: in light mode it matches the paper token */
+  --tape: var(--paper);
+  --tape-ink: var(--ink);
+  --tape-ink-2: var(--ink-2);
+  --tape-rule: var(--rule);
+  --tape-ribbon: var(--ribbon);
+  --tape-posted: var(--posted);
   color-scheme: light;
 }
 .dark {
@@ -40,6 +47,13 @@
   --posted: #82d3a4;
   --posted-wash: #183326;
   --shadow: 0 1px 1px rgb(0 0 0 / 0.45), 0 12px 26px -10px rgb(0 0 0 / 0.7);
+  /* Dark = the desk at night, but the tape is still paper under a desk lamp: lit stock, dark print */
+  --tape: #e4e6e2;
+  --tape-ink: #16181a;
+  --tape-ink-2: #4b545c;
+  --tape-rule: #b9bfc4;
+  --tape-ribbon: #a51f17;
+  --tape-posted: #1f5c38;
   color-scheme: dark;
 }
 
@@ -75,19 +89,28 @@
 
 @layer components {
   /* Tape strip: paper with zig-zag tear edges and a soft offset shadow (it lies ON the desk). */
-  .tape { position: relative; background: var(--paper); box-shadow: var(--shadow); padding: 1.35rem 1.2rem; }
+  /* Everything printed on the tape re-scopes the colour tokens to the tape's own stock and ink,
+     so badges, figures and rules inside it stay legible in both themes. */
+  .tape {
+    --ink: var(--tape-ink); --ink-2: var(--tape-ink-2); --rule: var(--tape-rule); --ribbon: var(--tape-ribbon);
+    --posted: var(--tape-posted); --desk-2: color-mix(in oklab, var(--tape-ink) 10%, var(--tape));
+    position: relative; background: var(--tape); color: var(--tape-ink); box-shadow: var(--shadow); padding: 1.35rem 1.2rem;
+  }
+  .dark .tape { background: radial-gradient(120% 70% at 50% 0%, #f1f2ee, var(--tape) 70%); }
+  /* Torn edges: a row of clean paper teeth cut by an SVG mask (no gradient slivers, no band) */
   .tape::before, .tape::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    height: 7px;
-    background:
-      linear-gradient(-45deg, var(--paper) 5px, transparent 0) 0 0 / 10px 7px repeat-x,
-      linear-gradient(45deg, var(--paper) 5px, transparent 0) 0 0 / 10px 7px repeat-x;
+    height: 6px;
+    background: var(--tape);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E") 0 0 / 10px 6px repeat-x;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z'/%3E%3C/svg%3E") 0 0 / 10px 6px repeat-x;
   }
-  .tape::before { top: -7px; transform: scaleY(-1); }
-  .tape::after { bottom: -7px; }
+  .tape::before { top: -6px; transform: scaleY(-1); }
+  .tape::after { bottom: -6px; }
+  .dark .tape::before { background: #f1f2ee; }
 
   /* One printed line: label, figure, operator column, like a printing calculator. */
   .tape-line { display: grid; grid-template-columns: 1fr auto 1.2ch; gap: 0.75rem; align-items: baseline;
@@ -110,22 +133,28 @@
   .key-quiet:hover { box-shadow: 0 3px 0 var(--rule), inset 0 0 0 1px var(--rule); }
   .key-quiet:active { box-shadow: 0 0 0 var(--rule), inset 0 0 0 1px var(--rule); }
 
-  .field { display: grid; gap: 0.35rem; font-size: 0.8rem; color: var(--ink-2); }
-  .input, .field input, .field select { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
-    padding: 0.55rem 0.7rem; color: var(--ink); font-size: 0.9rem; transition: border-color 150ms, box-shadow 150ms; }
+  /* align-content: start, or a field without an error line stretches its label row and drops its control */
+  .field { display: grid; align-content: start; gap: 0.35rem; font-size: 0.8rem; color: var(--ink-2); }
+  .input, .field input, .field select { height: 2.5rem; background-color: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 0 0.7rem; color: var(--ink); font-size: 0.9rem; transition: border-color 150ms, box-shadow 150ms; }
+  /* Selects: palette-themed chevron instead of the browser's */
+  select.input, .field select { appearance: none; padding-right: 2rem; background-repeat: no-repeat; background-position: right 0.65rem center; background-size: 0.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%237b848c' stroke-width='1.8'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5'/%3E%3C/svg%3E"); }
   .input:focus, .field input:focus, .field select:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ink) 12%, transparent); }
   .field .err { color: var(--ribbon); font-size: 0.75rem; min-height: 1em; }
 
   /* Ledger table: hairlines, tabular figures, a heavy rule under the head, no zebra. */
   .ledger { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-  .ledger th { text-align: left; font-family: var(--font-mono); font-size: 0.64rem; font-weight: 500; letter-spacing: 0.08em;
+  .ledger th { text-align: left; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
     text-transform: uppercase; color: var(--ink-2); padding: 0.65rem 0.8rem; border-bottom: 1.5px solid var(--ink); white-space: nowrap; }
   .ledger td { padding: 0.62rem 0.8rem; border-bottom: 1px solid var(--rule); white-space: nowrap; }
   .ledger tbody tr { transition: background-color 120ms; }
   .ledger tbody tr:hover { background: color-mix(in oklab, var(--ink) 4%, transparent); }
   .num { text-align: right; font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
 
-  .stamp { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--font-mono); font-size: 0.64rem; font-weight: 600;
+  /* Mono stays for figures and anything printed on tape; UI labels use the sans. */
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-2); }
+  .stamp { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; font-weight: 700;
     letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid currentColor; border-radius: 3px; white-space: nowrap; }
   .skeleton { background: linear-gradient(90deg, var(--desk-2), color-mix(in oklab, var(--desk-2) 55%, var(--paper)), var(--desk-2));
     background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
