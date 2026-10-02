@@ -1,0 +1,8 @@
+{
+  "name": "payroll-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Browser E2E: real OIDC login through Keycloak for each role, using your installed Chrome.",
+  "scripts": { "test": "node login-flows.mjs ../docs/screenshots" },
+  "dependencies": { "puppeteer-core": "^24.0.0" }
+}

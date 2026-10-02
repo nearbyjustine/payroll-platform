@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: payroll-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/payroll}
+    username: ${DB_USER:payroll}
+    password: ${DB_PASSWORD:payroll}
+  jpa:
+    open-in-view: false            # no lazy loading in the web layer (see handbook ch. 03)
+    hibernate:
+      ddl-auto: validate           # Flyway owns the schema; Hibernate only checks it matches
+    properties:
+      hibernate.jdbc.batch_size: 50
+      hibernate.order_inserts: true
+  flyway:
+    locations: classpath:db/migration
+  messages:
+    basename: i18n/messages
+    fallback-to-system-locale: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # The "iss" claim in tokens (the public URL the browser uses)
+          issuer-uri: ${OIDC_ISSUER:http://localhost:8180/realms/payroll}
+          # Where the API downloads signing keys (can be an internal Docker hostname)
+          jwk-set-uri: ${OIDC_JWKS:http://localhost:8180/realms/payroll/protocol/openid-connect/certs}
+  threads:
+    virtual:
+      enabled: false
+
+server:
+  error:
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  cors-allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:8081}
+  storage:
+    bucket: ${S3_BUCKET:payslips}
+    region: ${AWS_REGION:ap-southeast-1}
+    endpoint: ${S3_ENDPOINT:http://localhost:4566}   # LocalStack; leave empty for real AWS
+    public-endpoint: ${S3_PUBLIC_ENDPOINT:http://localhost:4566}  # host the BROWSER uses for pre-signed URLs
+    presign-ttl: 5m
+  payroll:
+    chunk-size: 50
+
+logging:
+  pattern:
+    level: "%5p [cid=%X{correlationId:-}]"

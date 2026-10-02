@@ -1,0 +1,47 @@
+{
+  "realm": "payroll",
+  "enabled": true,
+  "displayName": "Payroll Demo",
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "roles": {
+    "realm": [
+      { "name": "EMPLOYEE", "description": "Can view own payslips" },
+      { "name": "HR", "description": "Manages employees" },
+      { "name": "PAYROLL_ADMIN", "description": "Runs payroll" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "payroll-web",
+      "name": "Payroll SPA",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "implicitFlowEnabled": false,
+      "redirectUris": ["http://localhost:5173/*", "http://localhost:8081/*"],
+      "webOrigins": ["http://localhost:5173", "http://localhost:8081"],
+      "attributes": { "pkce.code.challenge.method": "S256", "post.logout.redirect.uris": "http://localhost:5173/*##http://localhost:8081/*" }
+    }
+  ],
+  "users": [
+    {
+      "username": "ana", "enabled": true, "email": "ana@demo.ph", "emailVerified": true,
+      "firstName": "Ana", "lastName": "Santos",
+      "credentials": [{ "type": "password", "value": "ana123", "temporary": false }],
+      "realmRoles": ["EMPLOYEE"]
+    },
+    {
+      "username": "hana", "enabled": true, "email": "hana@demo.ph", "emailVerified": true,
+      "firstName": "Hana", "lastName": "Reyes",
+      "credentials": [{ "type": "password", "value": "hana123", "temporary": false }],
+      "realmRoles": ["EMPLOYEE", "HR"]
+    },
+    {
+      "username": "paolo", "enabled": true, "email": "paolo@demo.ph", "emailVerified": true,
+      "firstName": "Paolo", "lastName": "Cruz",
+      "credentials": [{ "type": "password", "value": "paolo123", "temporary": false }],
+      "realmRoles": ["EMPLOYEE", "PAYROLL_ADMIN"]
+    }
+  ]
+}
